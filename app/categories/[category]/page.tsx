@@ -36,7 +36,7 @@ async function fetchPostsByCategory(categoryId: number, page: number = 1) {
   const baseUrl =  'http://www.hasnitube.com';
   
   try {
-    const response = await fetch(`${baseUrl}/api/posts?categories=${categoryId}&page=${page}&per_page=100`, {
+    const response = await fetch(`${baseUrl}/api/posts?categories=${categoryId}&page=${page}&per_page=20`, {
       next: { revalidate: 300 }, // Cache for 5 minutes
     });
     

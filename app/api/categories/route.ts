@@ -27,7 +27,7 @@ function processCategory(category: any): any {
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-  const perPage = searchParams.get('per_page') || '100';
+  const perPage = searchParams.get('per_page') || '20';
 
   try {
     const response = await fetch(`${WP_API_BASE}/categories?per_page=${perPage}`, {
