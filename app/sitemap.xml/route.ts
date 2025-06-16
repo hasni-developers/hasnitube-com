@@ -4,7 +4,7 @@ async function fetchAllPosts() {
   const baseUrl = 'http://www.hasnitube.com';
   
   try {
-    const response = await fetch(`${baseUrl}/api/posts?per_page=100&orderby=date&order=desc`, {
+    const response = await fetch(`${baseUrl}/api/posts?per_page=20&orderby=date&order=desc`, {
       next: { revalidate: 3600 }, // Cache for 1 hour
     });
     
