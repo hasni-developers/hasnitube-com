@@ -12,7 +12,8 @@ function replaceBrandNames(text: string): string {
     .replace(/Javed Chaudhry/gi, 'Hasni Tube')
     // Replace Urdu variations
     .replace(/جاوید چودھری/g, 'HasniTube')
-    .replace(/زیرو پوائنٹ/g, 'HasniTube');
+    .replace(/زیرو پوائنٹ/g, 'HasniTube')
+    .replace(/مانیٹرنگ ڈیسک/g, 'ٹیم حسنی');
 }
 
 // Helper function to process category and replace brand names
