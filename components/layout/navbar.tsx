@@ -13,7 +13,9 @@ import {
   Menu, 
   X, 
   Globe,
-  Newspaper
+  Newspaper,
+  Hash,
+  FolderOpen
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -21,6 +23,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu';
 
 export function Navbar() {
@@ -95,6 +98,19 @@ export function Navbar() {
                       </Link>
                     </DropdownMenuItem>
                   ))}
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link href="/categories" className="flex items-center">
+                      <FolderOpen className="h-4 w-4 mr-2" />
+                      All Categories
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/tags" className="flex items-center">
+                      <Hash className="h-4 w-4 mr-2" />
+                      Tags Cloud
+                    </Link>
+                  </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             </nav>
@@ -180,6 +196,26 @@ export function Navbar() {
                       {t(category.key)}
                     </Link>
                   ))}
+                  
+                  <div className="border-t border-border/50 my-2"></div>
+                  
+                  <Link
+                    href="/categories"
+                    className="flex items-center px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent rounded-md transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <FolderOpen className="h-4 w-4 me-3" />
+                    All Categories
+                  </Link>
+                  
+                  <Link
+                    href="/tags"
+                    className="flex items-center px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent rounded-md transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <Hash className="h-4 w-4 me-3" />
+                    Tags Cloud
+                  </Link>
                   
                   <Button
                     variant="ghost"

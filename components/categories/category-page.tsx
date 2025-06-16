@@ -5,10 +5,10 @@ import Link from 'next/link';
 import { useLanguage } from '@/components/providers/language-provider';
 import { WordPressPostCard } from '@/components/posts/wordpress-post-card';
 import { SidebarAd } from '@/components/ads/google-adsense';
+import { PaginationWithPerPage } from '@/components/ui/pagination-with-perpage';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
 import { ArrowLeft, Filter, Grid, List, Calendar, TrendingUp } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { WordPressPost, WordPressCategory } from '@/lib/wordpress-api';
@@ -24,6 +24,7 @@ interface CategoryPageProps {
 export function CategoryPage({ category, posts, currentPage, totalPages, totalPosts }: CategoryPageProps) {
   const { t, isRTL } = useLanguage();
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [perPage, setPerPage] = useState(12);
 
   return (
     <div className="min-h-screen">
@@ -113,7 +114,7 @@ export function CategoryPage({ category, posts, currentPage, totalPages, totalPo
               </div>
 
               <div className="text-sm text-muted-foreground">
-                Showing {((currentPage - 1) * 12) + 1}-{Math.min(currentPage * 12, totalPosts)} of {totalPosts} articles
+                Showing {((currentPage - 1) * perPage) + 1}-{Math.min(currentPage * perPage, totalPosts)} of {totalPosts} articles
               </div>
             </motion.div>
 
@@ -157,47 +158,22 @@ export function CategoryPage({ category, posts, currentPage, totalPages, totalPo
               </motion.div>
             )}
 
-            {/* Pagination */}
+            {/* Enhanced Pagination with Per-Page */}
             {totalPages > 1 && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="flex justify-center pt-8"
+                className="pt-8"
               >
-                <Pagination>
-                  <PaginationContent>
-                    {currentPage > 1 && (
-                      <PaginationItem>
-                        <PaginationPrevious 
-                          href={`/categories/${category.slug}?page=${currentPage - 1}`}
-                        />
-                      </PaginationItem>
-                    )}
-                    
-                    {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                      const page = i + 1;
-                      return (
-                        <PaginationItem key={page}>
-                          <PaginationLink 
-                            href={`/categories/${category.slug}?page=${page}`}
-                            isActive={page === currentPage}
-                          >
-                            {page}
-                          </PaginationLink>
-                        </PaginationItem>
-                      );
-                    })}
-                    
-                    {currentPage < totalPages && (
-                      <PaginationItem>
-                        <PaginationNext 
-                          href={`/categories/${category.slug}?page=${currentPage + 1}`}
-                        />
-                      </PaginationItem>
-                    )}
-                  </PaginationContent>
-                </Pagination>
+                <PaginationWithPerPage
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  totalItems={totalPosts}
+                  perPage={perPage}
+                  onPerPageChange={setPerPage}
+                  baseUrl={`/categories/${category.slug}`}
+                />
               </motion.div>
             )}
           </div>
