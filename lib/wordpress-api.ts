@@ -66,14 +66,15 @@ export class WordPressAPI {
   // Helper function to replace brand names in text content
   private replaceBrandNames(text: string): string {
     if (!text) return text;
-    
+
     return text
       // Replace English variations
       .replace(/JavedCh/gi, 'HasniTube')
       .replace(/Javed Chaudhry/gi, 'Hasni Tube')
       // Replace Urdu variations
       .replace(/جاوید چودھری/g, 'HasniTube')
-      .replace(/زیرو پوائنٹ/g, 'HasniTube');
+      .replace(/زیرو پوائنٹ/g, 'HasniTube')
+      .replace(/مانیٹرنگ ڈیسک/g, 'ٹیم حسنی');;
   }
 
   // Helper function to process WordPress post and replace brand names
@@ -161,7 +162,7 @@ export class WordPressAPI {
       orderby: params.orderby || 'date',
       order: params.order || 'desc',
       ...Object.fromEntries(
-        Object.entries(params).filter(([key, value]) => 
+        Object.entries(params).filter(([key, value]) =>
           value !== undefined && !['page', 'per_page', 'orderby', 'order'].includes(key)
         )
       )
@@ -172,14 +173,14 @@ export class WordPressAPI {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      
+
       const posts = await response.json();
       const totalPages = parseInt(response.headers.get('X-WP-TotalPages') || '1');
       const total = parseInt(response.headers.get('X-WP-Total') || '0');
-      
+
       // Process each post to replace brand names
       const processedPosts = posts.map((post: WordPressPost) => this.processPost(post));
-      
+
       return { posts: processedPosts, totalPages, total };
     } catch (error) {
       console.error('Error fetching posts:', error);
@@ -193,10 +194,10 @@ export class WordPressAPI {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      
+
       const posts = await response.json();
       if (posts.length === 0) return null;
-      
+
       // Process the post to replace brand names
       return this.processPost(posts[0]);
     } catch (error) {
@@ -211,9 +212,9 @@ export class WordPressAPI {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      
+
       const categories = await response.json();
-      
+
       // Process each category to replace brand names
       return categories.map((category: WordPressCategory) => this.processCategory(category));
     } catch (error) {
@@ -228,9 +229,9 @@ export class WordPressAPI {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      
+
       const tags = await response.json();
-      
+
       // Process each tag to replace brand names
       return tags.map((tag: WordPressTag) => this.processTag(tag));
     } catch (error) {
@@ -245,10 +246,10 @@ export class WordPressAPI {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      
+
       const categories = await response.json();
       if (categories.length === 0) return null;
-      
+
       // Process the category to replace brand names
       return this.processCategory(categories[0]);
     } catch (error) {
@@ -263,10 +264,10 @@ export class WordPressAPI {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      
+
       const tags = await response.json();
       if (tags.length === 0) return null;
-      
+
       // Process the tag to replace brand names
       return this.processTag(tags[0]);
     } catch (error) {
