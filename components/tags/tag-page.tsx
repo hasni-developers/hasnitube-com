@@ -1,13 +1,13 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/components/providers/language-provider';
 import { WordPressPostCard } from '@/components/posts/wordpress-post-card';
 import { SidebarAd } from '@/components/ads/google-adsense';
+import { PaginationWithPerPage } from '@/components/ui/pagination-with-perpage';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
 import { ArrowLeft, Tag, Hash, TrendingUp } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { WordPressPost, WordPressTag } from '@/lib/wordpress-api';
@@ -22,6 +22,7 @@ interface TagPageProps {
 
 export function TagPage({ tag, posts, currentPage, totalPages, totalPosts }: TagPageProps) {
   const { t, isRTL } = useLanguage();
+  const [perPage, setPerPage] = useState(12);
 
   return (
     <div className="min-h-screen">
@@ -119,47 +120,22 @@ export function TagPage({ tag, posts, currentPage, totalPages, totalPosts }: Tag
               </motion.div>
             )}
 
-            {/* Pagination */}
+            {/* Enhanced Pagination with Per-Page */}
             {totalPages > 1 && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="flex justify-center pt-8"
+                className="pt-8"
               >
-                <Pagination>
-                  <PaginationContent>
-                    {currentPage > 1 && (
-                      <PaginationItem>
-                        <PaginationPrevious 
-                          href={`/tags/${tag.slug}?page=${currentPage - 1}`}
-                        />
-                      </PaginationItem>
-                    )}
-                    
-                    {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                      const page = i + 1;
-                      return (
-                        <PaginationItem key={page}>
-                          <PaginationLink 
-                            href={`/tags/${tag.slug}?page=${page}`}
-                            isActive={page === currentPage}
-                          >
-                            {page}
-                          </PaginationLink>
-                        </PaginationItem>
-                      );
-                    })}
-                    
-                    {currentPage < totalPages && (
-                      <PaginationItem>
-                        <PaginationNext 
-                          href={`/tags/${tag.slug}?page=${currentPage + 1}`}
-                        />
-                      </PaginationItem>
-                    )}
-                  </PaginationContent>
-                </Pagination>
+                <PaginationWithPerPage
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  totalItems={totalPosts}
+                  perPage={perPage}
+                  onPerPageChange={setPerPage}
+                  baseUrl={`/tags/${tag.slug}`}
+                />
               </motion.div>
             )}
           </div>
