@@ -7,8 +7,8 @@ export function replaceBrandNames(text: string): string {
     .replace(/JavedCh/gi, 'HasniTube')
     .replace(/Javed Chaudhry/gi, 'Hasni Tube')
     // Replace Urdu variations
-    .replace(/جاوید چودھری/g, 'HasniTube')
-    .replace(/زیرو پوائنٹ/g, 'HasniTube')
-    .replace(/نیوز ڈیسک/g, 'ٹیم حسنی')
-    .replace(/مانیٹرنگ ڈیسک/g, 'ٹیم حسنی');
+    .replace(/جاوید چودھری/g, 'Hasni Tube')
+    .replace(/زیرو پوائنٹ/g, 'Hasni Tube')
+    .replace(/نیوز ڈیسک/g, 'Hasni Tube')
+    .replace(/مانیٹرنگ ڈیسک/g, 'Hasni Tube');
 }
