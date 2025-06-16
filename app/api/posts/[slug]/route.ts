@@ -1,20 +1,8 @@
+import { replaceBrandNames } from '@/lib/replaceBrandNames';
 import { NextRequest, NextResponse } from 'next/server';
 
 const WP_API_BASE = process.env.NEXT_PUBLIC_WP_API_URL || 'https://javedch.com/wp-json/wp/v2';
 
-// Helper function to replace brand names in text content
-function replaceBrandNames(text: string): string {
-  if (!text) return text;
-  
-  return text
-    // Replace English variations
-    .replace(/JavedCh/gi, 'HasniTube')
-    .replace(/Javed Chaudhry/gi, 'Hasni Tube')
-    // Replace Urdu variations
-    .replace(/جاوید چودھری/g, 'HasniTube')
-    .replace(/زیرو پوائنٹ/g, 'HasniTube')
-    .replace(/مانیٹرنگ ڈیسک/g, 'ٹیم حسنی');
-}
 
 // Helper function to process WordPress post and replace brand names
 function processPost(post: any): any {
