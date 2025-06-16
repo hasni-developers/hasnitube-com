@@ -10,7 +10,7 @@ interface PostPageProps {
 }
 
 async function fetchPostBySlug(slug: string) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+  const baseUrl =  'http://www.hasnitube.com';
   
   try {
     const response = await fetch(`${baseUrl}/api/posts/${slug}`, {

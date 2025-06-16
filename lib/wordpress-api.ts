@@ -54,7 +54,7 @@ export interface WordPressTag {
   count: number;
 }
 
-const WP_API_BASE = process.env.NEXT_PUBLIC_WP_API_URL || 'https://your-wordpress-site.com/wp-json/wp/v2';
+const WP_API_BASE = process.env.NEXT_PUBLIC_WP_API_URL || 'https://javedch.com/wp-json/wp/v2';
 
 export class WordPressAPI {
   private baseUrl: string;

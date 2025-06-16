@@ -13,7 +13,7 @@ interface CategoryPageProps {
 }
 
 async function fetchCategoryBySlug(slug: string) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+  const baseUrl =  'http://www.hasnitube.com';
   
   try {
     const response = await fetch(`${baseUrl}/api/categories/${slug}`, {
@@ -33,7 +33,7 @@ async function fetchCategoryBySlug(slug: string) {
 }
 
 async function fetchPostsByCategory(categoryId: number, page: number = 1) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+  const baseUrl =  'http://www.hasnitube.com';
   
   try {
     const response = await fetch(`${baseUrl}/api/posts?categories=${categoryId}&page=${page}&per_page=12`, {

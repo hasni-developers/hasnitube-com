@@ -100,7 +100,7 @@ class ApiClient {
   constructor() {
     this.baseUrl = typeof window !== 'undefined' 
       ? window.location.origin 
-      : process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+      :  'http://www.hasnitube.com';
   }
 
   async fetchPosts(params: {

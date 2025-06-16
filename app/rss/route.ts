@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 async function fetchLatestPosts() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+  const baseUrl =  'http://www.hasnitube.com';
   
   try {
     const response = await fetch(`${baseUrl}/api/posts?per_page=20&orderby=date&order=desc`, {
@@ -21,7 +21,7 @@ async function fetchLatestPosts() {
 }
 
 export async function GET() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://example.com';
+  const baseUrl =  'http://www.hasnitube.com';
   const posts = await fetchLatestPosts();
   
   const rssXml = `<?xml version="1.0" encoding="UTF-8"?>
