@@ -32,14 +32,20 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  const categories = [
-    { key: 'politics', href: '/categories/politics' },
-    { key: 'technology', href: '/categories/technology' },
-    { key: 'world', href: '/categories/world' },
-    { key: 'business', href: '/categories/business' },
-    { key: 'sports', href: '/categories/sports' },
-    { key: 'entertainment', href: '/categories/entertainment' },
-  ];
+ const categories = [
+  { key: 'home', href: '/', label: 'صفحۂ اول' },
+  { key: 'latest', href: '/categories/latest-urdu-news', label: 'تازہ ترین' },
+  { key: 'pakistan', href: '/categories/pakistan', label: 'پاکستان' },
+  { key: 'international', href: '/categories/international', label: 'انٹرنیشنل' },
+  { key: 'sports', href: '/categories/sports', label: 'کھیل' },
+  { key: 'showbiz', href: '/categories/showbiz', label: 'شوبز' },
+  { key: 'business', href: '/categories/business', label: 'بزنس' },
+  { key: 'health', href: '/categories/health', label: 'صحت' },
+  { key: 'science-and-technology', href: '/categories/science-and-technology', label: 'سائنس اور ٹیکنالوجی' },
+  { key: 'interesting-and-weird', href: '/categories/interesting-and-weird', label: 'دلچسپ و عجیب' },
+  { key: 'special-features', href: '/categories/special-features', label: 'خصوصی فیچرز' },
+];
+
 
   return (
     <>
@@ -69,13 +75,13 @@ export function Navbar() {
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-8">
-              <Link 
+              {/* <Link 
                 href="/" 
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
                 {t('home')}
               </Link>
-              
+               */}
               {categories.slice(0, 4).map((category) => (
                 <Link
                   key={category.key}

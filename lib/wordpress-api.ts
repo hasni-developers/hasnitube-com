@@ -208,7 +208,7 @@ export class WordPressAPI {
 
   async fetchCategories(): Promise<WordPressCategory[]> {
     try {
-      const response = await fetch(`${this.baseUrl}/categories?per_page=100`);
+      const response = await fetch(`${this.baseUrl}/categories?per_page=20`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -225,7 +225,7 @@ export class WordPressAPI {
 
   async fetchTags(): Promise<WordPressTag[]> {
     try {
-      const response = await fetch(`${this.baseUrl}/tags?per_page=100`);
+      const response = await fetch(`${this.baseUrl}/tags?per_page=20`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }

@@ -32,11 +32,11 @@ async function fetchTagBySlug(slug: string) {
   }
 }
 
-async function fetchPostsByTag(tagId: number, page: number = 1) {
+async function fetchPostsByTag(tagId: number, page: number = 1,perPage:number) {
   const baseUrl =  'http://www.hasnitube.com';
   
   try {
-    const response = await fetch(`${baseUrl}/api/posts?tags=${tagId}&page=${page}&per_page=12`, {
+    const response = await fetch(`${baseUrl}/api/posts?tags=${tagId}&page=${page}&per_page=${perPage}`, {
       next: { revalidate: 300 }, // Cache for 5 minutes
     });
     
@@ -81,7 +81,7 @@ export default async function Page({ params, searchParams }: TagPageProps) {
   }
 
   const currentPage = parseInt(searchParams.page || '1');
-  const { posts, totalPages, total } = await fetchPostsByTag(tag.id, currentPage);
+  const { posts, totalPages, total } = await fetchPostsByTag(tag.id, currentPage, 100);
 
   return (
     <TagPage 
