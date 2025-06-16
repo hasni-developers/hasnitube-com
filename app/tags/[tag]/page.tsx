@@ -13,7 +13,7 @@ interface TagPageProps {
 }
 
 async function fetchTagBySlug(slug: string) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+  const baseUrl =  'http://www.hasnitube.com';
   
   try {
     const response = await fetch(`${baseUrl}/api/tags/${slug}`, {
@@ -33,7 +33,7 @@ async function fetchTagBySlug(slug: string) {
 }
 
 async function fetchPostsByTag(tagId: number, page: number = 1) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+  const baseUrl =  'http://www.hasnitube.com';
   
   try {
     const response = await fetch(`${baseUrl}/api/posts?tags=${tagId}&page=${page}&per_page=12`, {
