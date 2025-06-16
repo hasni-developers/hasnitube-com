@@ -22,7 +22,7 @@ interface TagPageProps {
 
 export function TagPage({ tag, posts, currentPage, totalPages, totalPosts }: TagPageProps) {
   const { t, isRTL } = useLanguage();
-  const [perPage, setPerPage] = useState(12);
+  const [perPage, setPerPage] = useState(100);
 
   return (
     <div className="min-h-screen">

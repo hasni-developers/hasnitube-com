@@ -24,7 +24,7 @@ interface CategoryPageProps {
 export function CategoryPage({ category, posts, currentPage, totalPages, totalPosts }: CategoryPageProps) {
   const { t, isRTL } = useLanguage();
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
-  const [perPage, setPerPage] = useState(12);
+  const [perPage, setPerPage] = useState(100);
 
   return (
     <div className="min-h-screen">
